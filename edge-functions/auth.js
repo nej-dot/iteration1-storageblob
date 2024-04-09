@@ -1,11 +1,10 @@
 export const config = {
     runtime: 'edge',
-    matcher: '/*',  // This ensures the auth runs on all routes
+    matcher: '/*',  // This applies the function to all routes
   };
   
   export default async function handler(req) {
-    const username = process.env.VERCEL_USERNAME;
-    const password = process.env.VERCEL_PASSWORD;
+    const expectedPassword = process.env.VERCEL_PASSWORD;  // Secure password in environment variable
   
     const authHeader = req.headers.get('authorization');
     if (!authHeader) {
@@ -19,9 +18,9 @@ export const config = {
   
     const encoded = authHeader.split(' ')[1];
     const decoded = atob(encoded);
-    const [inputUsername, inputPassword] = decoded.split(':');
+    const [_, inputPassword] = decoded.split(':');  // Ignore the username part
   
-    if (inputUsername !== username || inputPassword !== password) {
+    if (inputPassword !== expectedPassword) {
       return new Response('Invalid authentication', { status: 403 });
     }
   
