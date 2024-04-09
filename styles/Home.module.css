@@ -11,9 +11,23 @@
   margin-bottom: 2rem;
 }
 
+.promptGroup {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
 .promptGroup input {
   flex-grow: 1;
-  margin-right: 0.5rem; /* Provides a small gap between the input and the button */
+  margin-right: 0.5rem;
+}
+
+.promptGroup button {
+  /* Add styling for the generate button */
+  padding: 0.8rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
 .form {
@@ -30,15 +44,6 @@
   margin-bottom: 0.5rem;
 }
 
-.form button {
-  width: 20%;
-  padding: 0.8rem;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  align-items: right; 
-  margin-bottom: 0.5rem;
-}
 
 .form label {
   font-weight: bold;

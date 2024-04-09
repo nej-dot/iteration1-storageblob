@@ -86,13 +86,11 @@ export default function Home() {
                 </div>
             )}
             <form onSubmit={handleSubmit} className={styles.form}>
-            <button type="submit" disabled={formData.loading}>{formData.loading ? 'Generating...' : 'Generate'}</button>
                 <div className={styles.promptGroup}>
                     <label>Prompt:</label>
                     <input type="text" name="prompt" value={formData.prompt} onChange={handleChange} />
+                    <button type="submit" disabled={formData.loading}>{formData.loading ? 'Generating...' : 'Generate'}</button>
                 </div>
-               
-
                 <label>Sharpnesst(0-10):</label>
                 <input type="range" name="sharpness" min="0" max="10" value={formData.sharpness} onChange={handleChange} />
                 <span>{formData.sharpness}</span>
@@ -128,9 +126,7 @@ export default function Home() {
                     <option value="1280*720">1280*720</option>
                     <option value="1920*1080">1920*1080</option>
                 </select>
-
             </form>
-
             {formData.error && <div className={styles.error}>{formData.error}</div>}
         </div>
     );
