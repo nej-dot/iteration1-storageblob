@@ -1,8 +1,9 @@
-// middleware/middleware.js
-
 import { NextResponse } from 'next/server';
+const console = require('console');
 
 export function middleware(req) {
+    console.log('Authorization Header:', req.headers.get('Authorization'));
+
     const basicAuth = req.headers.get('authorization');
 
     if (!basicAuth) {
