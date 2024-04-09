@@ -72,5 +72,7 @@
   z-index: 1; /* Set z-index to position elements above the image */
   border: 2px solid #ccc;
   border-radius: 4px;
+  padding: 20px; /* Add padding to create space between the image and the border */
   margin-bottom: 2rem; /* Ensures there's space between the image and the form */
 }
+
