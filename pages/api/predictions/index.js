@@ -6,12 +6,31 @@ export default async function handler(req, res) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      // Pinned to a specific version of Stable Diffusion
-      // See https://replicate.com/stability-ai/sdxl
-      version: "2b017d9b67edd2ee1401238df49d75da53c523f36e363881e057f5dc3ed3c5b2",
-
-      // This is the text prompt that will be submitted by a form on the frontend
-      input: { prompt: req.body.prompt },
+      version: "fda927242b1db6affa1ece4f54c37f19b964666bf23b0d06ae2439067cd344a4",
+      input: {
+        prompt: req.body.prompt,
+        cn_type1: "ImagePrompt",
+        cn_type2: "ImagePrompt",
+        cn_type3: "ImagePrompt",
+        cn_type4: "ImagePrompt",
+        sharpness: 2,
+        image_seed: 50403806253646856,
+        uov_method: "Disabled",
+        image_number: 1,
+        guidance_scale: 4,
+        refiner_switch: 0.5,
+        negative_prompt: "",
+        style_selections: "Fooocus V2,Fooocus Enhance,Fooocus Sharp",
+        uov_upscale_value: 0,
+        outpaint_selections: "",
+        outpaint_distance_top: 0,
+        performance_selection: "Speed",
+        outpaint_distance_left: 0,
+        aspect_ratios_selection: "1152*896",
+        outpaint_distance_right: 0,
+        outpaint_distance_bottom: 0,
+        inpaint_additional_prompt: ""
+      }
     }),
   });
 
