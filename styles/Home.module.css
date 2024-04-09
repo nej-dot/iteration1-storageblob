@@ -21,12 +21,22 @@
   flex-direction: column;
 }
 
-.input, .form input, .form select, .form button, .form span {
+.input, .form input, .form select, .form span {
   width: 100%;
   padding: 0.8rem;
   font-size: 1rem;
   border: 1px solid #ccc;
   border-radius: 4px;
+  margin-bottom: 0.5rem;
+}
+
+.form button {
+  width: 20%;
+  padding: 0.8rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  align-items: right; 
   margin-bottom: 0.5rem;
 }
 
@@ -53,4 +63,7 @@
   display: flex; /* Optional: Use flexbox to center the image vertically */
   justify-content: center; /* Optional: Center the image horizontally */
   align-items: center; /* Optional: Center the image vertically */
+  position: relative;
+  z-index: 1; /* Set z-index to position elements above the image */
+  margin-bottom: 2rem; /* Ensures there's space between the image and the form */
 }

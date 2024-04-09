@@ -74,11 +74,24 @@ export default function Home() {
             <Head>
                 <title>Create Prediction</title>
             </Head>
+            {formData.prediction && formData.prediction.output && (
+                <div className={styles.imageContainer}>
+                    <Image
+                        src={formData.prediction.output[formData.prediction.output.length - 1]}
+                        alt="Output image"
+                        layout="fill"
+                        objectFit="contain"
+                    />
+                    <p>Status: {formData.prediction.status}</p>
+                </div>
+            )}
             <form onSubmit={handleSubmit} className={styles.form}>
+            <button type="submit" disabled={formData.loading}>{formData.loading ? 'Generating...' : 'Generate'}</button>
                 <div className={styles.promptGroup}>
                     <label>Prompt:</label>
                     <input type="text" name="prompt" value={formData.prompt} onChange={handleChange} />
                 </div>
+               
 
                 <label>Sharpnesst(0-10):</label>
                 <input type="range" name="sharpness" min="0" max="10" value={formData.sharpness} onChange={handleChange} />
@@ -116,22 +129,9 @@ export default function Home() {
                     <option value="1920*1080">1920*1080</option>
                 </select>
 
-                <button type="submit" disabled={formData.loading}>{formData.loading ? 'Generating...' : 'Generate'}</button>
             </form>
 
             {formData.error && <div className={styles.error}>{formData.error}</div>}
-
-            {formData.prediction && formData.prediction.output && (
-                <div className={styles.imageContainer}>
-                    <Image
-                        src={formData.prediction.output[formData.prediction.output.length - 1]}
-                        alt="Output image"
-                        layout="fill"
-                        objectFit="contain"
-                    />
-                    <p>Status: {formData.prediction.status}</p>
-                </div>
-            )}
         </div>
     );
 }
