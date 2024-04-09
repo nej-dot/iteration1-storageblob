@@ -1,5 +1,4 @@
-// next.config.mjs
-import { NextConfig } from 'next';
+// next.config.js
 
 const nextConfig = {
   reactStrictMode: true,
@@ -31,4 +30,4 @@ const nextConfig = {
   },
 };
 
-export default nextConfig;
+module.exports = nextConfig;
