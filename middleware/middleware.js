@@ -1,13 +1,16 @@
+// middleware/middleware.js
+
 import { NextResponse } from 'next/server';
-const console = require('console');
 
-export function middleware(req) {
-    console.log('Authorization Header:', req.headers.get('Authorization'));
+export function middleware(request) {
+    console.log("Middleware is running."); // This log should appear in the server logs.
+    console.log('Authorization Header:', request.headers.get('Authorization'));
 
-    const basicAuth = req.headers.get('authorization');
+    const basicAuth = request.headers.get('authorization');
 
     if (!basicAuth) {
-        return new Response('Authorization required', {
+        console.log("No basic auth provided.");
+        return new NextResponse('Authentication required', {
             status: 401,
             headers: {
                 'WWW-Authenticate': 'Basic realm="Secure Area"',
@@ -20,8 +23,10 @@ export function middleware(req) {
     const expectedPassword = process.env.PASSWORD_PROTECT;
 
     if (password !== expectedPassword) {
-        return new Response('Unauthorized', { status: 401 });
+        console.log("Incorrect password.");
+        return new NextResponse('Unauthorized', { status: 401 });
     }
 
+    console.log("Authentication successful.");
     return NextResponse.next();
 }
