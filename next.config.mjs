@@ -5,14 +5,6 @@ const nextConfig = {
   images: {
     domains: ['replicate.com', 'replicate.delivery'], // Existing allowed domains
   },
-  async rewrites() {
-    return [
-      {
-        source: '/:path*',
-        destination: '/api/auth/:path*',
-      },
-    ];
-  },
 };
 
 const webpackConfig = (config, { isServer }) => {
