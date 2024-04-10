@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { Blob } from '@vercel/blob';
-
-const blob = new Blob({
-  token: 'BLOB_READ_WRITE_TOKEN', // Use your Vercel access token
-});
+import { list } from '@vercel/blob'; // Direct import of the list function
+import Image from 'next/image';
 
 const Gallery = () => {
   const [images, setImages] = useState([]);
 
   useEffect(() => {
     const fetchImages = async () => {
-      const fetchedImages = await blob.list(); // This will list all blob items
-      setImages(fetchedImages.items);
+      try {
+        const { blobs } = await list({ token: process.env.BLOB_READ_WRITE_TOKEN }); // Direct use of list function
+        setImages(blobs);
+      } catch (error) {
+        console.error('Failed to fetch images:', error);
+        setImages([]); // Handle errors gracefully
+      }
     };
 
     fetchImages();
@@ -22,7 +24,9 @@ const Gallery = () => {
       <h1>Image Gallery</h1>
       <div>
         {images.map((img, index) => (
-          <img key={index} src={img.url} alt="Gallery Image" style={{ width: '100px', height: '100px' }} />
+          <div key={index} style={{ width: '100px', height: '100px', position: 'relative' }}>
+            <Image src={img.url} alt="Gallery Image" layout="fill" objectFit="cover" />
+          </div>
         ))}
       </div>
     </div>
