@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import { Blob } from '@vercel/blob';
+
+const blob = new Blob({
+  token: 'BLOB_READ_WRITE_TOKEN', // Use your Vercel access token
+});
 
 const Gallery = () => {
   const [images, setImages] = useState([]);
 
   useEffect(() => {
     const fetchImages = async () => {
-      const response = await axios.get('YOUR_BLOB_STORAGE_URL/images', {
-        headers: { 'Authorization': `Bearer YOUR_API_KEY` }
-      });
-      setImages(response.data.images);
+      const fetchedImages = await blob.list(); // This will list all blob items
+      setImages(fetchedImages.items);
     };
 
     fetchImages();
