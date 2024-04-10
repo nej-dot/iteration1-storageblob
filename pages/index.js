@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
+import Link from 'next/link'; // Import the Link component
 
 const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
@@ -74,6 +75,8 @@ export default function Home() {
             <Head>
                 <title>Create Prediction</title>
             </Head>
+            <h1>Welcome to Our Site</h1> {/* Display the welcome message */}
+            <Link href="/gallery">Go to Gallery</Link> {/* Add Link to Gallery */}
             {formData.prediction && formData.prediction.output && (
                 <div className={styles.imageContainer}>
                     <Image
